@@ -35,7 +35,7 @@ require_relative '../models/address_book'
           main_menu
         when 4
           system "clear"
-          find_entry
+          view_entry_by_number
           main_menu
         when 5
           system "clear"
@@ -80,19 +80,15 @@ require_relative '../models/address_book'
 
    end
 
-   def find_entry
-     print "Type the entry number of your choice: "
-     e_number = gets.chomp.to_i
-
-     if e_number < @address_book.entries.count
-       puts @address_book.entries(e_number)
-       puts "Press enter to return to the main menu"
-       gets.chomp
-       system "clear"
-     else
-       puts "#{e_number} is an invalid entry"
-       find_entry
-     end
+   def view_entry_by_number
+    print "Please supply an entry number: "
+    selection = gets.chomp.to_i
+    if selection <= address_book.entries.length && selection > 0
+      puts address_book.entries[selection - 1]
+    else
+      puts "Invalid entry"
+      view_entry_by_number
+    end
    end
 
    def read_csv
