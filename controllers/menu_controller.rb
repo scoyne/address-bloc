@@ -81,13 +81,17 @@ require_relative '../models/address_book'
    end
 
    def find_entry
-     system "clear"
-     print "Type the entry number of your choice"
-     e_number = gets
-     address_book.entries.each do |entry|.include? e_number
-       puts entry
+     print "Type the entry number of your choice: "
+     e_number = gets.chomp.to_i
+
+     if e_number < @address_book.entries.count
+       puts @address_book.entries(e_number)
+       puts "Press enter to return to the main menu"
+       gets.chomp
+       system "clear"
      else
-       puts "Sorry, that is not a valid entry"
+       puts "#{e_number} is an invalid entry"
+       find_entry
      end
    end
 
