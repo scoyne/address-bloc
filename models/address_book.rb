@@ -8,6 +8,10 @@ require "csv"
       @entries = []
     end
 
+    def abolish
+    	@entries = []
+    end
+
     def add_entry(name, phone_number, email)
       index = 0
       entries.each do |entry|
@@ -40,7 +44,7 @@ require "csv"
        add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"])
      end
    end
-   
+
    def binary_search(name)
      lower = 0
      upper = entries.length - 1
@@ -57,5 +61,5 @@ require "csv"
      end
      return nil
    end
- 
+
  end
